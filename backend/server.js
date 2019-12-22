@@ -14,7 +14,7 @@ const corsOptions = {
 app.options("*", cors(corsOptions));
 const router = express.Router();
 const dbRoute =
-  "mongodb+srv://prianka01:Priyankaj2001@cluster0-tko4l.mongodb.net/test?retryWrites=true&w=majority";
+  "mongodb+srv://prianka01:FH3yRO55jzvvJzID@cluster0-tko4l.mongodb.net/test?retryWrites=true&w=majority";
 mongoose.connect(dbRoute, {
   useUnifiedTopology: true,
   useNewUrlParser: true
