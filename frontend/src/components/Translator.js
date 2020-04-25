@@ -7,28 +7,27 @@ export class Translator extends React.Component {
       input_text: "",
       data: this.props.data,
       success: 0,
-      translated: null
+      translated: null,
     };
     this.handleChange = this.handleChange.bind(this);
-    this.onClickTranslate = this.onClickTranslate.bind(this);
-    this.translateToMinion = this.translateToMinion.bind(this);
+
+    // this.onClickTranslate = this.onClickTranslate.bind(this);
+    // this.translateToMinion = this.translateToMinion.bind(this);
   }
   handleChange(e) {
     this.setState({ input_text: e.target.value });
   }
-  putDataToDB = message => {
-    let currentIds = this.state.data.map(data => data.id);
+  putDataToDB = async (message) => {
+    let currentIds = this.state.data.map((data) => data.id);
     let idToBeAdded = 0;
     while (currentIds.includes(idToBeAdded)) {
       ++idToBeAdded;
     }
-    putData(message, idToBeAdded);
+    await putData(message, idToBeAdded);
   };
-  onClickTranslate = () => {
-    this.putDataToDB(this.state.input_text);
-    this.setState({
-      buttonIsClicked: true
-    });
+  onClickTranslate = async () => {
+    await this.putDataToDB(this.state.input_text);
+    this.props.getDataFromDb();
     this.translateToMinion();
   };
 
@@ -36,7 +35,7 @@ export class Translator extends React.Component {
     const dataResponse = await translateText(this.state.input_text);
     this.setState({
       success: dataResponse.success.total,
-      translated: dataResponse.contents.translated
+      translated: dataResponse.contents.translated,
     });
   };
   render() {
