@@ -1,8 +1,4 @@
 node_modules
-package-lock.json
-backend/package-lock.json
-frontend/package-lock.json
-README.md
 frontend/README.md
 frontend/src/App.test.js
 frontend/src/setupTests.js
